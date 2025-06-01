@@ -19,6 +19,7 @@
       --inactive-color: #999;
       --whatsapp-color: #25D366;
       --telegram-color: #0088cc;
+      --share-color: #4CAF50;
     }
     
     body {
@@ -93,6 +94,11 @@
 
     .whatsapp-btn {
       background-color: var(--whatsapp-color);
+      color: white;
+    }
+    
+    .share-btn {
+      background-color: var(--share-color);
       color: white;
     }
 
@@ -220,6 +226,14 @@
         </svg>
         <span>المراسلة على واتساب</span>
       </a>
+      
+      <!-- زر المشاركة الجديد -->
+      <button class="contact-btn share-btn" id="shareButton">
+        <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white">
+          <path d="M5.5 16.5c1.28 0 2.43-.54 3.25-1.41l4.76 2.78s-.01.09-.01.13c0 2.48 2.02 4.5 4.5 4.5s4.5-2.02 4.5-4.5-2.02-4.5-4.5-4.5c-1.35 0-2.54.61-3.37 1.55l-4.66-2.72c0-.11.03-.22.03-.33s-.02-.22-.03-.33l4.66-2.72c.83.94 2.02 1.55 3.37 1.55 2.48 0 4.5-2.02 4.5-4.5S20.48 1.5 18 1.5 13.5 3.52 13.5 6c0 .04.01.09.01.13L8.75 8.91A4.49 4.49 0 0 0 5.5 7.5C3.02 7.5 1 9.52 1 12s2.02 4.5 4.5 4.5m12.5 0c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5-1.5-.67-1.5-1.5.67-1.5 1.5-1.5m0-12c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5-1.5-.67-1.5-1.5.67-1.5 1.5-1.5m-12.5 6c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5S4 12.83 4 12s.67-1.5 1.5-1.5"/>
+        </svg>
+        <span>مشاركة التطبيق</span>
+      </button>
     </div>
   </div>
 
@@ -282,6 +296,8 @@
       const contactButtons = document.querySelectorAll('.contact-btn');
       contactButtons.forEach(btn => {
         btn.addEventListener('click', function(e) {
+          if (this.tagName === 'A') return; // لا تنفذ التأثير على روابط الواتساب والتليجرام
+          
           e.preventDefault();
           // تأثير الضغط
           this.style.transform = 'scale(0.95)';
@@ -289,13 +305,42 @@
           
           // الانتقال بعد التأثير
           setTimeout(() => {
-            window.open(this.getAttribute('href'), '_blank');
             this.style.transform = '';
             this.style.opacity = '';
           }, 150);
         });
       });
+      
+      // دالة مشاركة التطبيق
+      document.getElementById('shareButton').addEventListener('click', function() {
+        const shareText = "ملخصات و تقييمات تانية ثانوي\nhttps://coder01012.github.io/gfchgf/index.html";
+        
+        if (navigator.share) {
+          // استخدام واجهة Web Share API إذا متاحة
+          navigator.share({
+            title: 'ملخصات وتقييمات',
+            text: 'ملخصات و تقييمات تانية ثانوي',
+            url: 'https://coder01012.github.io/gfchgf/index.html'
+          }).catch(err => {
+            console.log('Error sharing:', err);
+            fallbackShare(shareText);
+          });
+        } else {
+          // الطريقة التقليدية إذا لم تكن واجهة المشاركة متاحة
+          fallbackShare(shareText);
+        }
+      });
+      
+      function fallbackShare(text) {
+        // نسخ النص إلى الحافظة
+        navigator.clipboard.writeText(text).then(() => {
+          alert('تم نسخ الرابط إلى الحافظة:\n' + text);
+        }).catch(err => {
+          // إذا فشل نسخ إلى الحافظة، عرض النص في حوار
+          prompt('انسخ الرابط التالي:', text);
+        });
+      }
     });
   </script>
 </body>
-        </html>
+            </html>
