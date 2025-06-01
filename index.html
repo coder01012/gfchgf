@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>الصفحة الرئيسية</title>
+  <style>
+    :root {
+      font-size: 16px;
+      --primary-color: #007bff;
+      --active-bg: #cce4ff;
+      --inactive-color: #999;
+    }
+    
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      background: #f9f9f9;
+      font-family: sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .content {
+      flex: 1;
+      padding: 20px;
+      text-align: center;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      padding: 1.5rem 0;
+      background: linear-gradient(to top, #f9f9f9, #ffffff);
+      border-radius: 2rem 2rem 0 0;
+      box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.05);
+      height: 5.5rem;
+      width: 100%;
+      max-width: 100vw;
+      box-sizing: border-box;
+    }
+
+    .icon-m1 {
+      width: 3.6rem;
+      height: 3.6rem;
+      color: var(--inactive-color);
+      background: none;
+      border: none;
+      border-radius: 1rem;
+      padding: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      outline: none;
+      transition: transform 0.1s ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .icon-m1 svg {
+      width: 100%;
+      height: 100%;
+      stroke-width: 1.5;
+      stroke: currentColor;
+      fill: none;
+    }
+
+    .icon-m1.active {
+      background-color: var(--active-bg);
+      color: var(--primary-color);
+    }
+
+    .icon-m1.active svg {
+      fill: currentColor;
+      stroke: none;
+    }
+
+    .icon-m1:active {
+      transform: scale(0.95);
+    }
+
+    .icon-m1:focus {
+      outline: none;
+    }
+
+    @media (max-width: 480px) {
+      :root {
+        font-size: 18px;
+      }
+      
+      nav {
+        height: 6rem;
+        padding: 1.2rem 0;
+      }
+      
+      .icon-m1 {
+        width: 3.2rem;
+        height: 3.2rem;
+      }
+    }
+
+    @media (max-width: 360px) {
+      :root {
+        font-size: 14px;
+      }
+      
+      nav {
+        height: 5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="content">
+    <h1>الصفحة الرئيسية</h1>
+    <p>مرحبًا بك في الصفحة الرئيسية</p>
+  </div>
+
+  <nav>
+    <!-- البيت -->
+    <button class="icon-m1 active" aria-label="البيت" type="button" onclick="window.location.href='index.html'">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M3.5 12.5H5v6A2.5 2.5 0 0 0 7.5 21h9a2.5 2.5 0 0 0 2.5-2.5v-6h1.5a.499.499 0 0 0 .35-.85l-8.5-8.5c-.2-.2-.51-.2-.71 0l-8.49 8.5c-.14.14-.19.36-.11.54s.26.31.46.31"/>
+      </svg>
+    </button>
+
+    <!-- الكتاب -->
+    <button class="icon-m1" aria-label="الكتاب" type="button" onclick="window.location.href='p2.html'">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M12 2l.117 .007a1 1 0 0 1 .876 .876l.007 .117v4l.005 .15a2 2 0 0 0 1.838 1.844l.157 .006h4l.117 .007a1 1 0 0 1 .876 .876l.007 .117v9a3 3 0 0 1 -2.824 2.995l-.176 .005h-10a3 3 0 0 1 -2.995 -2.824l-.005 -.176v-14a3 3 0 0 1 2.824 -2.995l.176 -.005zm3 14h-6a1 1 0 0 0 0 2h6a1 1 0 0 0 0 -2m0 -4h-6a1 1 0 0 0 0 2h6a1 1 0 0 0 0 -2m-5 -4h-1a1 1 0 1 0 0 2h1a1 1 0 0 0 0 -2"/>
+        <path d="M19 7h-4l-.001 -4.001z"/>
+      </svg>
+    </button>
+    
+    <!-- الصفحة -->
+    <button class="icon-m1" aria-label="الصفحة" type="button" onclick="window.location.href='p1.html'">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M18.5 3h-12A2.5 2.5 0 0 0 4 5.5v13c0 .18.02.35.06.52.21 1.21 1.1 1.74 1.86 1.91l.14.03c.16.03.31.04.44.04h13c.28 0 .5-.22.5-.5s-.22-.5-.5-.5h-13q-.135 0-.27-.03h-.04c-.57-.12-1.03-.57-1.15-1.14-.02-.1-.04-.2-.04-.32 0-.83.67-1.5 1.5-1.5h12c.83 0 1.5-.67 1.5-1.5V4.5c0-.83-.67-1.5-1.5-1.5m-2 5h-8c-.28 0-.5-.22-.5-.5s.22-.5.5-.5h8c.28 0 .5.22.5.5s-.22.5-.5.5"/>
+      </svg>
+    </button>
+
+    <!-- التلفون -->
+    <button class="icon-m1" aria-label="التلفون" type="button" onclick="window.location.href='p3.html'">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M13.48 16.16c-.65-.36-2.13-1.25-3.26-2.38s-2.02-2.61-2.38-3.26l2.49-2.31L6.72 2.8 3.01 5.37v.25c-.02.26-.25 6.36 4.38 10.99 4.09 4.09 9.22 4.4 10.65 4.4h.58l2.57-3.72-5.42-3.61-2.3 2.49Z"/>
+      </svg>
+    </button>
+  </nav>
+
+  <script>
+    // تحديد الزر النشط بناءً على الصفحة الحالية
+    document.addEventListener('DOMContentLoaded', function() {
+      const buttons = document.querySelectorAll('.icon-m1');
+      buttons.forEach(button => {
+        button.addEventListener('click', () => {
+          buttons.forEach(b => b.classList.remove('active'));
+          button.classList.add('active');
+        });
+        
+        button.addEventListener('mousedown', e => e.preventDefault());
+        button.addEventListener('mouseup', () => button.blur());
+        button.addEventListener('mouseleave', () => button.blur());
+      });
+      
+      // تحديد الزر النشط تلقائياً
+      const path = window.location.pathname.split('/').pop() || 'index.html';
+      buttons.forEach(button => {
+        const buttonPath = button.getAttribute('onclick').match(/'([^']+)'/)[1];
+        if (buttonPath === path) {
+          button.classList.add('active');
+        } else {
+          button.classList.remove('active');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
