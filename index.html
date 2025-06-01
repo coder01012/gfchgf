@@ -18,16 +18,18 @@
       height: 100vh;
       display: flex;
       flex-direction: column;
-      justify-content: flex-end;
       background: #f9f9f9;
       font-family: sans-serif;
       -webkit-tap-highlight-color: transparent;
+      overflow: hidden;
     }
 
     .content {
       flex: 1;
       padding: 20px;
       text-align: center;
+      overflow-y: auto;
+      margin-bottom: 5.5rem;
     }
 
     nav {
@@ -42,6 +44,9 @@
       width: 100%;
       max-width: 100vw;
       box-sizing: border-box;
+      position: fixed;
+      bottom: 0;
+      z-index: 1000;
     }
 
     .icon-m1 {
@@ -152,7 +157,6 @@
   </nav>
 
   <script>
-    // تحديد الزر النشط بناءً على الصفحة الحالية
     document.addEventListener('DOMContentLoaded', function() {
       const buttons = document.querySelectorAll('.icon-m1');
       buttons.forEach(button => {
@@ -166,7 +170,6 @@
         button.addEventListener('mouseleave', () => button.blur());
       });
       
-      // تحديد الزر النشط تلقائياً
       const path = window.location.pathname.split('/').pop() || 'index.html';
       buttons.forEach(button => {
         const buttonPath = button.getAttribute('onclick').match(/'([^']+)'/)[1];
